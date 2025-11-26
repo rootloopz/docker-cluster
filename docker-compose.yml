@@ -1,0 +1,34 @@
+services:
+  mpi-node1:
+    build: .
+    hostname: mpi-node1
+    container_name: mpi-node1
+    networks:
+      - mpi-network
+    volumes:
+      - ./:/app
+    mem_limit: 512m
+
+  mpi-node2:
+    build: .
+    hostname: mpi-node2
+    container_name: mpi-node2
+    networks:
+      - mpi-network
+    volumes:
+      - ./:/app
+    mem_limit: 512m
+
+  mpi-node3:
+    build: .
+    hostname: mpi-node3
+    container_name: mpi-node3
+    networks:
+      - mpi-network
+    volumes:
+      - ./:/app
+    mem_limit: 512m
+
+networks:
+  mpi-network:
+    driver: bridge
