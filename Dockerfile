@@ -4,8 +4,7 @@ RUN apt-get update && \
     apt-get install -y \
     openmpi-bin \
     libopenmpi-dev \
-    openssh-server \
-    && rm -rf /var/lib/apt/lists/*
+    openssh-server
 
 RUN pip install mpi4py
 
