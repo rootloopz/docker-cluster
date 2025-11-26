@@ -15,4 +15,4 @@ Now the containers are running we can exec into node1 and run a test:
 ```
 docker exec -it mpi-node1 /bin/bash
 ```
-
+![cluster up](cluster-working.png)
