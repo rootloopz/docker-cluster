@@ -4,9 +4,10 @@ RUN apt-get update && \
     apt-get install -y \
     openmpi-bin \
     libopenmpi-dev \
-    openssh-server
+    openssh-server \
+    default-jre
 
-RUN pip install mpi4py
+RUN pip install mpi4py pyspark
 
 # Generate SSH keys
 RUN ssh-keygen -t rsa -f /root/.ssh/id_rsa -N '' && \
@@ -16,7 +17,10 @@ RUN echo "StrictHostKeyChecking no" >> /root/.ssh/config
 
 WORKDIR /app
 
-EXPOSE 22
+COPY run_spark.sh /run_spark.sh
+RUN chmod +x /run_spark.sh
 
-CMD ["/usr/sbin/sshd", "-D"]
+EXPOSE 22 7077 8080
+
+CMD /run_spark.sh && /usr/sbin/sshd -D
 
